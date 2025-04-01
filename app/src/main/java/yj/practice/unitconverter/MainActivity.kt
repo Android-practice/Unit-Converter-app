@@ -21,6 +21,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -69,7 +70,8 @@ fun UnitConverter() {
     fun convertUnits() {
         val inputValueDouble =
             inputValue.toDoubleOrNull() ?: 0.0 //double이 아닌 경우 Crash 날 수 있어서 orNull추가
-        val result = (inputValueDouble * iConversionFactor.value * 100.0 / oConversionFactor.value ).roundToInt() / 100.0
+        val result =
+            (inputValueDouble * iConversionFactor.value * 100.0 / oConversionFactor.value).roundToInt() / 100.0
         outputValue = result.toString()
     }
 
@@ -79,7 +81,11 @@ fun UnitConverter() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) { // column have row
         //Here all the UI elements will be stacked below each other ( element를 추가하면 세로방향으로 stack )
-        Text("Unit Converter", modifier = Modifier.padding(3.dp))//padding
+        Text(
+            "Unit Converter",
+            modifier = Modifier.padding(3.dp),
+            style = MaterialTheme.typography.headlineMedium
+        )//padding
 
         //spacer
         Spacer(modifier = Modifier.height(16.dp))
@@ -176,7 +182,10 @@ fun UnitConverter() {
             }
         }
         Spacer(modifier = Modifier.height(16.dp))
-        Text("Result : ${outputValue?:0.0}$outputUnit")
+        Text(
+            "Result : ${outputValue ?: 0.0}$outputUnit",
+            style = MaterialTheme.typography.headlineMedium
+        )
     }
 
 }
